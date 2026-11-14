@@ -1,0 +1,677 @@
+{
+  "id": "7cd2dc4a-fd29-4d80-ac6d-f8bf4a2a7bfd",
+  "version": "2.0",
+  "name": "Proyecto_VV_Grupo_2",
+  "url": "https://www.saucedemo.com",
+  "tests": [{
+    "id": "171a81a5-5190-4338-8faa-72e93498973b",
+    "name": "CP01_Autenticacion_HappyPath",
+    "commands": [{
+      "id": "dfce6b44-b985-499f-9d1a-4b273e534931",
+      "comment": "CP01 - Flujo de autenticación (Happy Path)",
+      "command": "open",
+      "target": "/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "aaafae35-f80a-4830-ae17-7e2688a11c34",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1280x800",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "b99a6bb8-e682-4a33-b82d-e495c27cc127",
+      "comment": "Ingresar usuario: standard_user",
+      "command": "executeScript",
+      "target": "var e=document.getElementById('user-name');Object.getOwnPropertyDescriptor(HTMLInputElement.prototype,'value').set.call(e,'standard_user');e.dispatchEvent(new Event('input',{bubbles:true}));",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "0c2f6506-10e7-4c04-8410-cf8cae973de7",
+      "comment": "VERIFY: el campo usuario contiene 'standard_user'",
+      "command": "verifyValue",
+      "target": "id=user-name",
+      "targets": [
+        ["id=user-name", "id"],
+        ["css=#user-name", "css:finder"],
+        ["xpath=//*[@id='user-name']", "xpath:attributes"]
+      ],
+      "value": "standard_user"
+    }, {
+      "id": "9e3efefe-289a-41a0-b602-50db41fa9ba6",
+      "comment": "Ingresar contraseña: secret_sauce",
+      "command": "executeScript",
+      "target": "var e=document.getElementById('password');Object.getOwnPropertyDescriptor(HTMLInputElement.prototype,'value').set.call(e,'secret_sauce');e.dispatchEvent(new Event('input',{bubbles:true}));",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "753f1fa6-5f5e-4f70-a844-f215f0d601e9",
+      "comment": "VERIFY: el campo contraseña contiene 'secret_sauce'",
+      "command": "verifyValue",
+      "target": "id=password",
+      "targets": [
+        ["id=password", "id"],
+        ["css=#password", "css:finder"],
+        ["xpath=//*[@id='password']", "xpath:attributes"]
+      ],
+      "value": "secret_sauce"
+    }, {
+      "id": "4ecda65b-0d16-45ae-b90e-f41f5653a6cb",
+      "comment": "Enviar formulario de login",
+      "command": "click",
+      "target": "id=login-button",
+      "targets": [
+        ["id=login-button", "id"],
+        ["css=#login-button", "css:finder"],
+        ["xpath=//*[@id='login-button']", "xpath:attributes"]
+      ],
+      "value": ""
+    }, {
+      "id": "1c7692f3-1106-4bfc-baf1-59af783b2561",
+      "comment": "Esperar carga del dashboard",
+      "command": "waitForElementVisible",
+      "target": "css=.title",
+      "targets": [
+        ["css=.title", "css:finder"],
+        ["xpath=//*[contains(@class,'title')]", "xpath:attributes"]
+      ],
+      "value": "5000"
+    }, {
+      "id": "6582cf80-c6fc-48cc-8c09-55a12cbd8405",
+      "comment": "ASSERT: el encabezado del dashboard es 'Products'",
+      "command": "assertText",
+      "target": "css=.title",
+      "targets": [
+        ["css=.title", "css:finder"],
+        ["xpath=//*[contains(@class,'title')]", "xpath:attributes"]
+      ],
+      "value": "Products"
+    }, {
+      "id": "24be0ced-e26b-4ef9-bf0c-c444aa6764ec",
+      "comment": "ASSERT: título de la pestaña",
+      "command": "assertTitle",
+      "target": "Swag Labs",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "1f4ae1f4-0a4c-4a29-95d9-94d67303c905",
+      "comment": "Guardar la ruta actual en la variable 'ruta'",
+      "command": "executeScript",
+      "target": "return window.location.pathname",
+      "targets": [],
+      "value": "ruta"
+    }, {
+      "id": "972e8702-87e9-4824-bdd0-638dda15f1cd",
+      "comment": "ASSERT: el usuario está en /inventory.html (dashboard)",
+      "command": "assert",
+      "target": "ruta",
+      "targets": [],
+      "value": "/inventory.html"
+    }, {
+      "id": "69c71ac9-0077-4a68-9166-d7e20b6500ce",
+      "comment": "ASSERT: se muestra el catálogo de productos",
+      "command": "assertElementPresent",
+      "target": "css=.inventory_list",
+      "targets": [
+        ["css=.inventory_list", "css:finder"],
+        ["xpath=//*[contains(@class,'inventory_list')]", "xpath:attributes"]
+      ],
+      "value": ""
+    }, {
+      "id": "a382ec84-79ec-4a5d-9d04-16693951ef5f",
+      "comment": "Abrir menú lateral",
+      "command": "click",
+      "target": "id=react-burger-menu-btn",
+      "targets": [
+        ["id=react-burger-menu-btn", "id"],
+        ["css=#react-burger-menu-btn", "css:finder"],
+        ["xpath=//*[@id='react-burger-menu-btn']", "xpath:attributes"]
+      ],
+      "value": ""
+    }, {
+      "id": "3226d4e5-9693-4f13-b48a-651f9d9f6643",
+      "comment": "Esperar animación del menú",
+      "command": "waitForElementVisible",
+      "target": "id=logout_sidebar_link",
+      "targets": [
+        ["id=logout_sidebar_link", "id"],
+        ["css=#logout_sidebar_link", "css:finder"],
+        ["xpath=//*[@id='logout_sidebar_link']", "xpath:attributes"]
+      ],
+      "value": "5000"
+    }, {
+      "id": "fbc000d4-033b-48b9-9fda-cc5718474421",
+      "comment": "Cerrar sesión",
+      "command": "click",
+      "target": "id=logout_sidebar_link",
+      "targets": [
+        ["id=logout_sidebar_link", "id"],
+        ["css=#logout_sidebar_link", "css:finder"],
+        ["xpath=//*[@id='logout_sidebar_link']", "xpath:attributes"]
+      ],
+      "value": ""
+    }, {
+      "id": "7d793bc8-1d78-4c7d-a335-4be65a6dce2f",
+      "comment": "Confirmar regreso al login",
+      "command": "waitForElementVisible",
+      "target": "id=login-button",
+      "targets": [
+        ["id=login-button", "id"],
+        ["css=#login-button", "css:finder"],
+        ["xpath=//*[@id='login-button']", "xpath:attributes"]
+      ],
+      "value": "5000"
+    }]
+  }, {
+    "id": "37aeb638-a50f-4b1d-a758-d3ef7ccee2db",
+    "name": "CP02_Login_Negativo",
+    "commands": [{
+      "id": "abdcfa9a-7c46-4b57-8ef2-eeaa0d864644",
+      "comment": "CP02 - Validación de negocio (Negative Testing)",
+      "command": "open",
+      "target": "/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "c588e81f-45f2-4054-89ce-75c5a2c2c253",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1280x800",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "4b7970dd-4c3c-4388-b939-aa7c722011b0",
+      "comment": "Ingresar usuario: locked_out_user",
+      "command": "executeScript",
+      "target": "var e=document.getElementById('user-name');Object.getOwnPropertyDescriptor(HTMLInputElement.prototype,'value').set.call(e,'locked_out_user');e.dispatchEvent(new Event('input',{bubbles:true}));",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "a76fcbbf-ede3-4240-b50e-aa4a98883ff2",
+      "comment": "VERIFY: el campo usuario contiene 'locked_out_user'",
+      "command": "verifyValue",
+      "target": "id=user-name",
+      "targets": [
+        ["id=user-name", "id"],
+        ["css=#user-name", "css:finder"],
+        ["xpath=//*[@id='user-name']", "xpath:attributes"]
+      ],
+      "value": "locked_out_user"
+    }, {
+      "id": "82bb0138-0b83-4f36-820f-c1e817f93836",
+      "comment": "Ingresar contraseña: secret_sauce",
+      "command": "executeScript",
+      "target": "var e=document.getElementById('password');Object.getOwnPropertyDescriptor(HTMLInputElement.prototype,'value').set.call(e,'secret_sauce');e.dispatchEvent(new Event('input',{bubbles:true}));",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "8c26e9e8-1f36-4a87-8f86-d8dd9e3163d8",
+      "comment": "VERIFY: el campo contraseña contiene 'secret_sauce'",
+      "command": "verifyValue",
+      "target": "id=password",
+      "targets": [
+        ["id=password", "id"],
+        ["css=#password", "css:finder"],
+        ["xpath=//*[@id='password']", "xpath:attributes"]
+      ],
+      "value": "secret_sauce"
+    }, {
+      "id": "1cd2cf4a-d38d-4889-8f42-c65ca204c993",
+      "comment": "Enviar formulario de login",
+      "command": "click",
+      "target": "id=login-button",
+      "targets": [
+        ["id=login-button", "id"],
+        ["css=#login-button", "css:finder"],
+        ["xpath=//*[@id='login-button']", "xpath:attributes"]
+      ],
+      "value": ""
+    }, {
+      "id": "3d293939-e103-47a9-8542-7d687cdf751e",
+      "comment": "Esperar mensaje de error",
+      "command": "waitForElementVisible",
+      "target": "css=[data-test=\"error\"]",
+      "targets": [
+        ["css=[data-test=\"error\"]", "css:data-attr"],
+        ["xpath=//*[@data-test='error']", "xpath:attributes"]
+      ],
+      "value": "5000"
+    }, {
+      "id": "6d7ee711-49a2-45ef-ad7e-05bbd06c957e",
+      "comment": "VERIFY: mensaje para usuario bloqueado",
+      "command": "verifyText",
+      "target": "css=[data-test=\"error\"]",
+      "targets": [
+        ["css=[data-test=\"error\"]", "css:data-attr"],
+        ["xpath=//*[@data-test='error']", "xpath:attributes"]
+      ],
+      "value": "Epic sadface: Sorry, this user has been locked out."
+    }, {
+      "id": "3b735f7c-a73c-4db5-abb4-c07124e85649",
+      "comment": "Ingresar usuario: standard_user",
+      "command": "executeScript",
+      "target": "var e=document.getElementById('user-name');Object.getOwnPropertyDescriptor(HTMLInputElement.prototype,'value').set.call(e,'standard_user');e.dispatchEvent(new Event('input',{bubbles:true}));",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "00dc3bef-15a6-435d-a787-02216b68da12",
+      "comment": "VERIFY: el campo usuario contiene 'standard_user'",
+      "command": "verifyValue",
+      "target": "id=user-name",
+      "targets": [
+        ["id=user-name", "id"],
+        ["css=#user-name", "css:finder"],
+        ["xpath=//*[@id='user-name']", "xpath:attributes"]
+      ],
+      "value": "standard_user"
+    }, {
+      "id": "965a8ed3-7358-46eb-b4ea-74fc3fbab172",
+      "comment": "Ingresar contraseña: clave_incorrecta",
+      "command": "executeScript",
+      "target": "var e=document.getElementById('password');Object.getOwnPropertyDescriptor(HTMLInputElement.prototype,'value').set.call(e,'clave_incorrecta');e.dispatchEvent(new Event('input',{bubbles:true}));",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "980382c9-c8a6-4fd8-b574-3d4a3d0f0403",
+      "comment": "VERIFY: el campo contraseña contiene 'clave_incorrecta'",
+      "command": "verifyValue",
+      "target": "id=password",
+      "targets": [
+        ["id=password", "id"],
+        ["css=#password", "css:finder"],
+        ["xpath=//*[@id='password']", "xpath:attributes"]
+      ],
+      "value": "clave_incorrecta"
+    }, {
+      "id": "8012b5a9-58c3-462b-8760-3ac8e2b61a00",
+      "comment": "Enviar formulario de login",
+      "command": "click",
+      "target": "id=login-button",
+      "targets": [
+        ["id=login-button", "id"],
+        ["css=#login-button", "css:finder"],
+        ["xpath=//*[@id='login-button']", "xpath:attributes"]
+      ],
+      "value": ""
+    }, {
+      "id": "f7934cd8-6637-41ba-b64a-489c6c0a3d93",
+      "comment": "VERIFY: mensaje para credenciales inválidas",
+      "command": "verifyText",
+      "target": "css=[data-test=\"error\"]",
+      "targets": [
+        ["css=[data-test=\"error\"]", "css:data-attr"],
+        ["xpath=//*[@data-test='error']", "xpath:attributes"]
+      ],
+      "value": "Epic sadface: Username and password do not match any user in this service"
+    }, {
+      "id": "cc87ae4c-5266-44d2-8154-6f0be98ce491",
+      "comment": "Recargar login con campos vacíos",
+      "command": "open",
+      "target": "/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "c890cedc-cd82-4683-aae3-3dae24524362",
+      "comment": "Enviar formulario vacío",
+      "command": "click",
+      "target": "id=login-button",
+      "targets": [
+        ["id=login-button", "id"],
+        ["css=#login-button", "css:finder"],
+        ["xpath=//*[@id='login-button']", "xpath:attributes"]
+      ],
+      "value": ""
+    }, {
+      "id": "7eb502c5-7946-4e9c-ba14-a4c230a1210f",
+      "comment": "",
+      "command": "waitForElementVisible",
+      "target": "css=[data-test=\"error\"]",
+      "targets": [
+        ["css=[data-test=\"error\"]", "css:data-attr"],
+        ["xpath=//*[@data-test='error']", "xpath:attributes"]
+      ],
+      "value": "5000"
+    }, {
+      "id": "43b8b9c5-50b8-4a44-b880-77c005300da6",
+      "comment": "VERIFY: mensaje de usuario obligatorio",
+      "command": "verifyText",
+      "target": "css=[data-test=\"error\"]",
+      "targets": [
+        ["css=[data-test=\"error\"]", "css:data-attr"],
+        ["xpath=//*[@data-test='error']", "xpath:attributes"]
+      ],
+      "value": "Epic sadface: Username is required"
+    }, {
+      "id": "c48acb3e-0325-4ddb-97e6-5f465c5f3b19",
+      "comment": "VERIFY: el sistema no permitió el acceso",
+      "command": "verifyElementPresent",
+      "target": "id=login-button",
+      "targets": [
+        ["id=login-button", "id"],
+        ["css=#login-button", "css:finder"],
+        ["xpath=//*[@id='login-button']", "xpath:attributes"]
+      ],
+      "value": ""
+    }]
+  }, {
+    "id": "7ea427dc-44c1-4e22-871a-a09926850fd4",
+    "name": "CP03_Elementos_Dinamicos_Carrito",
+    "commands": [{
+      "id": "642c0f2e-d07f-4f65-97fc-97e2f645716e",
+      "comment": "CP03 - Interacción con elementos dinámicos",
+      "command": "open",
+      "target": "/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "2e88d0c9-dc41-407c-8e6f-3dbfd0f08363",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1280x800",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "da954ba2-33e4-447e-9839-17011762e150",
+      "comment": "Precondición: carrito vacío",
+      "command": "executeScript",
+      "target": "window.localStorage.clear();",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "a2931aed-f81a-4b48-b1c6-80dce60f2eb6",
+      "comment": "Recargar tras limpiar el estado",
+      "command": "open",
+      "target": "/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "542cd8a4-240b-4275-b8fd-c1a929971752",
+      "comment": "Ingresar usuario: standard_user",
+      "command": "executeScript",
+      "target": "var e=document.getElementById('user-name');Object.getOwnPropertyDescriptor(HTMLInputElement.prototype,'value').set.call(e,'standard_user');e.dispatchEvent(new Event('input',{bubbles:true}));",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "3965291b-7dfa-4645-80c8-af000a852e9d",
+      "comment": "VERIFY: el campo usuario contiene 'standard_user'",
+      "command": "verifyValue",
+      "target": "id=user-name",
+      "targets": [
+        ["id=user-name", "id"],
+        ["css=#user-name", "css:finder"],
+        ["xpath=//*[@id='user-name']", "xpath:attributes"]
+      ],
+      "value": "standard_user"
+    }, {
+      "id": "2eab7606-0728-4a16-80c2-05c722440a01",
+      "comment": "Ingresar contraseña: secret_sauce",
+      "command": "executeScript",
+      "target": "var e=document.getElementById('password');Object.getOwnPropertyDescriptor(HTMLInputElement.prototype,'value').set.call(e,'secret_sauce');e.dispatchEvent(new Event('input',{bubbles:true}));",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "ac785156-a9b6-4c5f-a428-56792a3f68b8",
+      "comment": "VERIFY: el campo contraseña contiene 'secret_sauce'",
+      "command": "verifyValue",
+      "target": "id=password",
+      "targets": [
+        ["id=password", "id"],
+        ["css=#password", "css:finder"],
+        ["xpath=//*[@id='password']", "xpath:attributes"]
+      ],
+      "value": "secret_sauce"
+    }, {
+      "id": "704459bf-af90-4864-bdde-2bad9af1f83f",
+      "comment": "Enviar formulario de login",
+      "command": "click",
+      "target": "id=login-button",
+      "targets": [
+        ["id=login-button", "id"],
+        ["css=#login-button", "css:finder"],
+        ["xpath=//*[@id='login-button']", "xpath:attributes"]
+      ],
+      "value": ""
+    }, {
+      "id": "fbf9556f-4592-4723-afbf-1d9695fa70e7",
+      "comment": "Esperar el filtro de ordenamiento",
+      "command": "waitForElementVisible",
+      "target": "css=.product_sort_container",
+      "targets": [
+        ["css=.product_sort_container", "css:finder"],
+        ["xpath=//*[contains(@class,'product_sort_container')]", "xpath:attributes"]
+      ],
+      "value": "5000"
+    }, {
+      "id": "1f5c95a0-ec8a-44e8-8b89-e52a8926c73e",
+      "comment": "Ordenar por precio ascendente",
+      "command": "select",
+      "target": "css=.product_sort_container",
+      "targets": [
+        ["css=.product_sort_container", "css:finder"],
+        ["xpath=//*[contains(@class,'product_sort_container')]", "xpath:attributes"]
+      ],
+      "value": "label=Price (low to high)"
+    }, {
+      "id": "36d74575-1ffc-469f-92d5-c174a3a4b973",
+      "comment": "VERIFY: primer producto es el más barato",
+      "command": "verifyText",
+      "target": "css=.inventory_item_name",
+      "targets": [
+        ["css=.inventory_item_name", "css:finder"],
+        ["xpath=//*[contains(@class,'inventory_item_name')]", "xpath:attributes"]
+      ],
+      "value": "Sauce Labs Onesie"
+    }, {
+      "id": "684874e4-8a50-4c71-ae43-5271615d3db1",
+      "comment": "VERIFY: precio del primer producto",
+      "command": "verifyText",
+      "target": "css=.inventory_item_price",
+      "targets": [
+        ["css=.inventory_item_price", "css:finder"],
+        ["xpath=//*[contains(@class,'inventory_item_price')]", "xpath:attributes"]
+      ],
+      "value": "$7.99"
+    }, {
+      "id": "e071cd85-bbeb-4cf6-8642-50d1584ed3e9",
+      "comment": "Agregar producto 1 al carrito",
+      "command": "click",
+      "target": "id=add-to-cart-sauce-labs-onesie",
+      "targets": [
+        ["id=add-to-cart-sauce-labs-onesie", "id"],
+        ["css=#add-to-cart-sauce-labs-onesie", "css:finder"],
+        ["xpath=//*[@id='add-to-cart-sauce-labs-onesie']", "xpath:attributes"]
+      ],
+      "value": ""
+    }, {
+      "id": "cd74c54f-852b-4edb-9f8a-7fbb3f4f5755",
+      "comment": "Agregar producto 2 al carrito",
+      "command": "click",
+      "target": "id=add-to-cart-sauce-labs-bike-light",
+      "targets": [
+        ["id=add-to-cart-sauce-labs-bike-light", "id"],
+        ["css=#add-to-cart-sauce-labs-bike-light", "css:finder"],
+        ["xpath=//*[@id='add-to-cart-sauce-labs-bike-light']", "xpath:attributes"]
+      ],
+      "value": ""
+    }, {
+      "id": "31906b9f-7f92-4f5e-9c9c-9e23fd93814e",
+      "comment": "Esperar que aparezca el contador",
+      "command": "waitForElementVisible",
+      "target": "css=.shopping_cart_badge",
+      "targets": [
+        ["css=.shopping_cart_badge", "css:finder"],
+        ["xpath=//*[contains(@class,'shopping_cart_badge')]", "xpath:attributes"]
+      ],
+      "value": "5000"
+    }, {
+      "id": "00326ba1-9b38-4bfb-ab6b-2cd45755bb34",
+      "comment": "ASSERT: el carrito tiene 2 ítems",
+      "command": "assertText",
+      "target": "css=.shopping_cart_badge",
+      "targets": [
+        ["css=.shopping_cart_badge", "css:finder"],
+        ["xpath=//*[contains(@class,'shopping_cart_badge')]", "xpath:attributes"]
+      ],
+      "value": "2"
+    }, {
+      "id": "067f1a09-7e38-403a-aa66-3246fc25f74d",
+      "comment": "VERIFY: el botón cambió a 'Remove'",
+      "command": "verifyElementPresent",
+      "target": "id=remove-sauce-labs-onesie",
+      "targets": [
+        ["id=remove-sauce-labs-onesie", "id"],
+        ["css=#remove-sauce-labs-onesie", "css:finder"],
+        ["xpath=//*[@id='remove-sauce-labs-onesie']", "xpath:attributes"]
+      ],
+      "value": ""
+    }, {
+      "id": "1d2cf14e-8de4-47e7-be8e-cf27ec6c6006",
+      "comment": "Eliminar producto 1 desde el catálogo",
+      "command": "click",
+      "target": "id=remove-sauce-labs-onesie",
+      "targets": [
+        ["id=remove-sauce-labs-onesie", "id"],
+        ["css=#remove-sauce-labs-onesie", "css:finder"],
+        ["xpath=//*[@id='remove-sauce-labs-onesie']", "xpath:attributes"]
+      ],
+      "value": ""
+    }, {
+      "id": "8de27259-e6b7-478d-aac3-4588a52a25fa",
+      "comment": "ASSERT: el carrito tiene 1 ítem",
+      "command": "assertText",
+      "target": "css=.shopping_cart_badge",
+      "targets": [
+        ["css=.shopping_cart_badge", "css:finder"],
+        ["xpath=//*[contains(@class,'shopping_cart_badge')]", "xpath:attributes"]
+      ],
+      "value": "1"
+    }, {
+      "id": "e93af83b-0e68-404e-94c9-c84b396d3143",
+      "comment": "Ir al carrito",
+      "command": "click",
+      "target": "css=.shopping_cart_link",
+      "targets": [
+        ["css=.shopping_cart_link", "css:finder"],
+        ["xpath=//*[contains(@class,'shopping_cart_link')]", "xpath:attributes"]
+      ],
+      "value": ""
+    }, {
+      "id": "81772d2d-946e-4404-a85c-50e02411de14",
+      "comment": "Esperar carga del carrito",
+      "command": "waitForElementVisible",
+      "target": "css=.cart_item",
+      "targets": [
+        ["css=.cart_item", "css:finder"],
+        ["xpath=//*[contains(@class,'cart_item')]", "xpath:attributes"]
+      ],
+      "value": "5000"
+    }, {
+      "id": "3ee82de4-700f-4ee2-9040-25c39c788cb1",
+      "comment": "VERIFY: producto restante en el carrito",
+      "command": "verifyText",
+      "target": "css=.inventory_item_name",
+      "targets": [
+        ["css=.inventory_item_name", "css:finder"],
+        ["xpath=//*[contains(@class,'inventory_item_name')]", "xpath:attributes"]
+      ],
+      "value": "Sauce Labs Bike Light"
+    }, {
+      "id": "dda9c70d-27de-47f4-9c41-d845de63e9b8",
+      "comment": "Eliminar producto 2 desde el carrito",
+      "command": "click",
+      "target": "id=remove-sauce-labs-bike-light",
+      "targets": [
+        ["id=remove-sauce-labs-bike-light", "id"],
+        ["css=#remove-sauce-labs-bike-light", "css:finder"],
+        ["xpath=//*[@id='remove-sauce-labs-bike-light']", "xpath:attributes"]
+      ],
+      "value": ""
+    }, {
+      "id": "6a57dc8b-fe6c-4223-b74b-a7f52dfb1b85",
+      "comment": "Esperar que desaparezca el contador",
+      "command": "waitForElementNotPresent",
+      "target": "css=.shopping_cart_badge",
+      "targets": [
+        ["css=.shopping_cart_badge", "css:finder"],
+        ["xpath=//*[contains(@class,'shopping_cart_badge')]", "xpath:attributes"]
+      ],
+      "value": "5000"
+    }, {
+      "id": "9a708e49-1cde-4607-b091-dcd8e422e1cb",
+      "comment": "ASSERT: el carrito quedó vacío",
+      "command": "assertElementNotPresent",
+      "target": "css=.shopping_cart_badge",
+      "targets": [
+        ["css=.shopping_cart_badge", "css:finder"],
+        ["xpath=//*[contains(@class,'shopping_cart_badge')]", "xpath:attributes"]
+      ],
+      "value": ""
+    }, {
+      "id": "8e616081-3fd0-4f69-b6d4-77ab1a047c15",
+      "comment": "Volver al catálogo",
+      "command": "click",
+      "target": "id=continue-shopping",
+      "targets": [
+        ["id=continue-shopping", "id"],
+        ["css=#continue-shopping", "css:finder"],
+        ["xpath=//*[@id='continue-shopping']", "xpath:attributes"]
+      ],
+      "value": ""
+    }, {
+      "id": "586e894b-83a8-4b0f-b248-59b59c130754",
+      "comment": "Abrir menú lateral",
+      "command": "click",
+      "target": "id=react-burger-menu-btn",
+      "targets": [
+        ["id=react-burger-menu-btn", "id"],
+        ["css=#react-burger-menu-btn", "css:finder"],
+        ["xpath=//*[@id='react-burger-menu-btn']", "xpath:attributes"]
+      ],
+      "value": ""
+    }, {
+      "id": "bb019b56-4546-4a59-a74f-0e503bf8ed57",
+      "comment": "Esperar animación del menú",
+      "command": "waitForElementVisible",
+      "target": "id=logout_sidebar_link",
+      "targets": [
+        ["id=logout_sidebar_link", "id"],
+        ["css=#logout_sidebar_link", "css:finder"],
+        ["xpath=//*[@id='logout_sidebar_link']", "xpath:attributes"]
+      ],
+      "value": "5000"
+    }, {
+      "id": "f6258031-9b7e-4869-b958-7ae518cb74ab",
+      "comment": "Cerrar sesión",
+      "command": "click",
+      "target": "id=logout_sidebar_link",
+      "targets": [
+        ["id=logout_sidebar_link", "id"],
+        ["css=#logout_sidebar_link", "css:finder"],
+        ["xpath=//*[@id='logout_sidebar_link']", "xpath:attributes"]
+      ],
+      "value": ""
+    }, {
+      "id": "d838926c-8c00-4121-9dfd-da0bd23fa9fe",
+      "comment": "Confirmar regreso al login",
+      "command": "waitForElementVisible",
+      "target": "id=login-button",
+      "targets": [
+        ["id=login-button", "id"],
+        ["css=#login-button", "css:finder"],
+        ["xpath=//*[@id='login-button']", "xpath:attributes"]
+      ],
+      "value": "5000"
+    }]
+  }],
+  "suites": [{
+    "id": "f10d85d4-9181-4941-8dd4-6a34b9613b5c",
+    "name": "Suite_Regresion_Basica",
+    "persistSession": false,
+    "parallel": false,
+    "timeout": 300,
+    "tests": ["171a81a5-5190-4338-8faa-72e93498973b", "37aeb638-a50f-4b1d-a758-d3ef7ccee2db", "7ea427dc-44c1-4e22-871a-a09926850fd4"]
+  }],
+  "urls": ["https://www.saucedemo.com/"],
+  "plugins": []
+}
